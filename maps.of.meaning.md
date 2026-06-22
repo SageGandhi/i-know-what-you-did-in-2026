@@ -1,0 +1,1 @@
+##### "Tende supra" is a Latin phrase that translates to "aim upwards" or "stretch upwards".

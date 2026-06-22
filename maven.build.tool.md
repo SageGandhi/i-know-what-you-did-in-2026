@@ -1,0 +1,1 @@
+##### Download maven from https://dlcdn.apache.org/maven/maven-3/3.9.16/binaries/apache-maven-3.9.16-bin.zip, if java is in the Path, run **mvn wrapper:wrapper** to create mvnw in project direcory.spacing in path cause problem, set JAVA_HOME="C:\apps\jdk26". 
