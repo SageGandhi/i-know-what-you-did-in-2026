@@ -82,4 +82,23 @@ openssl pkey -in ec.key.pem -pubout
 openssl pkey -in dsa.4096.key.pem -pubout
 openssl pkey -in rsa.4096.key.pem -pubout
 ```
- 
+##### encryption/decryption and signature using openssl
+```sh
+# creating the private alice.private.key.pem and public alice.public.key.pem key for alice
+openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:4096 -out alice.private.key.pem
+openssl pkey -in alice.private.key.pem -out alice.public.key.pem -pubout
+# creating the private bob.private.key.pem and public bob.public.key.pem key for bob
+openssl genpkey -algorithm rsa -pkeyopt rsa_keygen_bits:4096 -out bob.private.key.pem
+openssl pkey -in bob.private.key.pem -out bob.public.key.pem -pubout
+# create a digest or hash of message for Message Authentication Code
+echo "this message is super secret and must be delivered to bob and bob only.">.\secret-message.txt
+openssl dgst -sha256 secret-message.txt
+# encrypt the sha256 digest using alice.private.key.pem to generate signature, signed by alice
+openssl dgst -sha256 -sign alice.private.key.pem -out alice.signed.bin secret-message.txt
+# encrypt the message using receiver(bob) public key cipher.using.bob.public.key.bin
+openssl pkeyutl -encrypt -in secret-message.txt -pubin -inkey bob.public.key.pem -out cipher.using.bob.public.key.bin 
+# message decrypted by bob.private.key.pem, hash(sha256sum) same secret-message.txt and secret-message.txt 1a22685535a19c45493f52eb97737d05551b965524f4825a181674861fc5555a
+openssl pkeyutl -decrypt -in cipher.using.bob.public.key.bin -inkey bob.private.key.pem -out decrypted.by.bob
+# verify alice generated the signature using alice.public.key.pem(authentication), and text is not modified since alice signed it using alice.private.key.pem(integrity)
+openssl dgst -sha256 -verify alice.public.key.pem -signature alice.signed.bin decrypted.by.bob 
+```
