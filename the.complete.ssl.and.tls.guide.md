@@ -30,3 +30,56 @@ sequenceDiagram
     Note over Client, Server: Established State
 ```
 ##### Add Delta Time Displayed in Wireshark -> Edit -> Preferences -> Column. Check The status bar in wireshark, it will show you the filter criteria expression when you select properties in a packet(if Flags are selected in a packet, corresponding tcp.flags expression is shown in status bar).
+##### [Create Github Pages for your portfolio](https://github.com/SageGandhi/sagegandhi.github.io)
+##### [Free Infinity Hosting Website](https://dash.infinityfree.com/accounts)
+##### Automatic Certificate Management Environment(automating interactions between certificate authorities and their users' servers, allowing the automated deployment)
+
+##### Confidentiality(Encryption), Integrity(Hashing), Authentication(PKI), Anti-Replay(Sequence#), Non-Repudiation(No Way To Deny)-By Product Of Integrity & Authentication.
+```sh
+echo -ne "learning on how hashing generate fixed width output with diffusion" | sha1sum # generating hash
+# creating rsa private key, encrypted with passphrase by aes256, and read it using openssl
+openssl genrsa -aes256 -out rsa.4096.key.pem 4096 && openssl rsa -in rsa.4096.key.pem -noout -text
+
+# encrypt the rsa private key and then keep it in decrypted plain base64 format,and encrypt again with different phrase
+openssl genrsa -aes256 -out rsa.4096.key.pem 4096 && openssl rsa -in rsa.4096.key.pem -out rsa.4096.key.decrypted.pem
+openssl rsa -in rsa.4096.key.decrypted.pem -aes256 -out rsa.4096.key.encrypted.pem  
+
+# creating dsaparam file separately and using it to create dsa key and viewing it
+openssl dsaparam -out dsa.4096.param.pem 4096 && openssl dsaparam -in dsa.4096.param.pem -text -noout
+openssl gendsa -out dsa.4096.key.pem dsa.4096.param.pem && openssl dsa -in dsa.4096.key.pem -text -noout
+
+# creating dsaparam and dsa key in a single file and viewing it
+openssl dsaparam -genkey -out dsa.4096.single.key.pem 4096 
+openssl dsa -in dsa.4096.single.key.pem -text -noout && openssl dsaparam -in dsa.4096.single.key.pem -text -noout
+
+# creating eclliptic curve parameter and saving it into ec.param.pem
+openssl genpkey -genparam -algorithm ec -pkeyopt ec_paramgen_curve:secp521r1 -out ec.param.pem 
+
+# checking all curves supported by openssl and viewing ec.param.pem
+openssl ecparam -list_curves && openssl ecparam -in ec.param.pem -noout -text
+
+# creating eclliptic curve key using parameter file and viewing
+openssl genpkey -paramfile ec.param.pem -out ec.key.pem && openssl ec -in ec.key.pem -noout -text
+
+# generating private key without eclliptic curve parameter
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:P-521 -out ec.without.param.key.pem
+openssl ec -in ec.without.param.key.pem  -noout -text
+
+# pkey utility to view rsa,dsa and eclliptic curve keys
+openssl genpkey -algorithm ec -pkeyopt ec_paramgen_curve:secp521r1 -out ec.key.pem
+openssl dsaparam -genkey -out dsa.4096.key.pem 4096
+openssl genrsa -out rsa.4096.key.pem 4096
+# review each key using pkey utility
+openssl pkey -in ec.key.pem -noout -text 
+openssl pkey -in dsa.4096.key.pem -noout -text 
+openssl pkey -in rsa.4096.key.pem -noout -text
+# review public key 
+openssl pkey -in rsa.4096.key.pem -noout -text_pub
+openssl pkey -in dsa.4096.key.pem -noout -text_pub
+openssl pkey -in ec.key.pem -noout -text_pub
+# extract public key
+openssl pkey -in ec.key.pem -pubout
+openssl pkey -in dsa.4096.key.pem -pubout
+openssl pkey -in rsa.4096.key.pem -pubout
+```
+ 

@@ -9,7 +9,7 @@ public class SynchronizedBlockTwoVariable {
 
     private Object lockFirstCounter = new Object();
     private Object lockSecondCounter = new Object();
-
+    // two different locks are used to synchronize two different variables. This allows for better concurrency as threads can increment different counters simultaneously without blocking each other.
     public void incrementFirstCounter() {
         synchronized (lockFirstCounter) {
             firstCounter++;
