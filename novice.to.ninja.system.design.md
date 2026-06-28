@@ -1,0 +1,1 @@
+##### Internet Protocol(IPV4/V6)-N.N.N.N(8bit/1byte each),N:N:N:N:N:N:N:N(16nit/2byte each)
