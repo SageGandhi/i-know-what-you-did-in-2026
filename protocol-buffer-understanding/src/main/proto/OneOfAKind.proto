@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package edu.gandhi.model.proto;
+
+option java_package = "edu.gandhi.model.proto";
+option java_multiple_files = true;
+
+message OneOfAKind{
+  oneof FollowingValues{
+    string fullName = 1;
+    string email = 2;
+  }
+}

@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package edu.gandhi.proto.model;
+
+option java_multiple_files = true;
+option java_package = "edu.gandhi.proto.model";
+
+message Request{
+  string request = 1;
+}
+
+message Response{
+  string response = 1;
+}
+
+service UnaryStreamingService{
+  rpc unaryClientUnaryServer(Request) returns (Response);
+  rpc unaryClientStreamingServer(Request) returns (stream Response);
+  rpc streamingClientUnaryServer(stream Request) returns (Response);
+  rpc streamingClientStreamingServer(stream Request) returns (stream Response);
+  rpc grpcWithDeadline(Request) returns (Response);
+}

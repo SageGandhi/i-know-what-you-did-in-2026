@@ -1,5 +1,7 @@
-- code first(existing code already developed) or design first. use https://swapi.info for star wars api.
-- clone this [repository](https://github.com/eazybytes/yaml.git) and go through [yaml-zero-to-master](https://www.udemy.com/course/yaml-zero-to-master) udemy course. following code snippet will provide you a gist of all yaml concept.
+###### code first(existing code already developed) or design first. use https://swapi.info for star wars api.
+###### clone this [repository](https://github.com/eazybytes/yaml.git) and go through [yaml-zero-to-master](https://www.udemy.com/course/yaml-zero-to-master) udemy course. following code snippet will provide you a gist of all yaml concept.
+###### [Download protocol buffer](https://github.com/protocolbuffers/protobuf/releases), [Well known types](https://protobuf.dev/reference/protobuf/google.protobuf/#index), [Check different options here](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) and [Find style guide and conventions](https://protobuf.dev/programming-guides/style/).[Learn from Protocol buffer documentation](https://protobuf.dev/programming-guides/proto3/).
+###### unary(request/response like in Rest), client/server/bi-directional streaming. [learn about http2](https://http2.github.io), [gRpc](https://grpc.io) and [grpc-java](https://github.com/grpc/grpc-java). What is deadlines in gRpc?
 ```yaml
 # example of multiple document in a single yaml document, think of multiple spring boot profile for all environment
 # --- will mark starting of one document and ... this will mark ending of the document. 
